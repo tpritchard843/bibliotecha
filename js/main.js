@@ -1,51 +1,46 @@
-let books = [];
-let booksFromLocalStorage = JSON.parse(localStorage.getItem('books'));
-
-if (booksFromLocalStorage) {
-  books = booksFromLocalStorage;
-  renderBooks(books);
-}
+window.onload = loadBooks
 
 document.querySelector('button').addEventListener('click',function() {
   getFetch();
-  console.log(books);
-  renderBooks(books);
 });
 
-//document.querySelector('h2').innerText = localStorage.getItem('books');
-//renderBooks(JSON.parse(localStorage.getItem('books')));
-
-
 function getFetch(){
-  const choice = document.querySelector('input').value;
+  let choice = document.querySelector('input').value;
   // 9780385540735 --> Surfing with Sartre
   // 9780345391803 --> Hitchhiker's Guide to the Galaxy
   // 0553213997 --> The Odyssey of Homer
   const url = `https://openlibrary.org/isbn/${choice}.json`;
-  
 
   if (choice) {
     fetch(url)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
         //console.log(data.title);
-        books.push(data.title);
-        console.log(books);
-        localStorage.setItem('books', JSON.stringify(books));
+        let book = data.title;
+        const booksList = document.querySelector('ul');
+        //add the book to localStorage
+        localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+        //add book title to the booksList
+        const li = document.createElement('li');
+        li.textContent = book;
+        booksList.appendChild(li);
       })
       .catch(err => {
           console.log(`error ${err}`);
       });
   }
 
+  else {alert('Error: Please enter a valid ISBN number')}
 }
 
-function renderBooks(arr) {
-  arr.forEach(element => {
+ function loadBooks() {
+    let books = Array.from(JSON.parse(localStorage.getItem('books')));
+    const booksList = document.querySelector('ul');
+    
+    books.forEach(book => {
     const li = document.createElement('li');
-    li.textContent = element;
-    document.querySelector('ul').appendChild(li);
-    console.log(element);
+    li.textContent = book;
+    booksList.appendChild(li);
   });
 }
 
