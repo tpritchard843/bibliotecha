@@ -17,13 +17,25 @@ function getFetch(){
       .then(data => {
         //console.log(data.title);
         let book = data.title;
+        let books = JSON.parse(localStorage.getItem('books'));
         const booksList = document.querySelector('ul');
-        //add the book to localStorage
-        localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
-        //add book title to the booksList
-        const li = document.createElement('li');
-        li.textContent = book;
-        booksList.appendChild(li);
+        // check to see if localStorage has any books in it
+        if (books) {
+          // check to see if the book is already in local storage
+          if (books.includes(book)) {
+            alert('You already added this book to your list.')
+          } else {
+            // add the book to localStorage
+            localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+          }
+        } else {
+          // add the book to localStorage
+          localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+          // add the book to the booksList
+          const li = document.createElement('li');
+          li.textContent = book;
+          booksList.appendChild(li);
+        }
       })
       .catch(err => {
           console.log(`error ${err}`);
