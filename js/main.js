@@ -9,6 +9,7 @@ function getFetch(){
   // 9780385540735 --> Surfing with Sartre
   // 9780345391803 --> Hitchhiker's Guide to the Galaxy
   // 0553213997 --> The Odyssey of Homer
+  // 9780553381696 --> Clash of Kings
   const url = `https://openlibrary.org/isbn/${choice}.json`;
 
   if (choice) {
@@ -25,16 +26,20 @@ function getFetch(){
           if (books.includes(book)) {
             alert('You already added this book to your list.')
           } else {
+            //add the book to the booklist
+            const li = document.createElement('li');
+            li.textContent = book;
+            booksList.appendChild(li);
             // add the book to localStorage
             localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
           }
         } else {
-          // add the book to localStorage
-          localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
           // add the book to the booksList
           const li = document.createElement('li');
           li.textContent = book;
           booksList.appendChild(li);
+          // add the book to localStorage
+          localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
         }
       })
       .catch(err => {
