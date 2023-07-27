@@ -1,11 +1,15 @@
 window.onload = loadBooks;
 
 class Book {
-  constructor(title, author, subjects, description) {
-    this.title = title;
-    this.author = author;
-    this.subjects = subjects;
-    this.description = description;
+  constructor(title, isbn, isSeries) {
+    this._title = title;
+    this._isbn = isbn;
+    this.isSeries = isSeries;
+    this.dateAdded = this.getDate()
+  }
+
+  getDate () {
+    return new Date().toLocaleDateString('en-us')
   }
 }
 
@@ -27,8 +31,12 @@ function getFetch(){
       .then(data => {
         //console.log(data.title);
         //create book object
-        let book = new Book(data.title, data.authors, data.subjects, data.description.value);
-        console.log(book);
+        // if (data.keys().includes('series')) {
+        //   let book = new Book(data.title, data.isbn_13, true);
+        // } else {
+        //   let book = new Book(data.title, data.isbn_13, false);
+        // }
+
 
         let books = JSON.parse(localStorage.getItem('books'));
         const booksList = document.querySelector('#booksList');
@@ -36,7 +44,7 @@ function getFetch(){
         if (books) {
           // check to see if the book is already in local storage
           if (books.includes(book)) {
-            alert('You already added this book to your list.')
+            alert('You already added this book to your list.');
           } else {
             //push object to books array/localstorage
             //add the book to the booklist
@@ -69,9 +77,27 @@ function getFetch(){
   });
 }
 
-function getBookList(title, author, subjects, description) {
+function getBookList(title, isbn, isSeries, dateAdded) {
   let bookList = ``;
   // args will be matching data from fetched JSON object
+  bookList += `
+  <div class="book">
+    <div class="book-inner">
+      <div class="title-div box1">
+        <p class="title">${title}</p>
+      </div>
+      <div class="isbn-div box2">
+        <p class="isbn">${isbn}</p>
+      </div>
+      <div class="series-div box3">
+        <p class="series">${isSeries}</p>
+      </div>
+      <div class="date-div box4">
+        <p class="date-added">${dateAdded}</p>
+      </div>
+    </div>
+  </div>
+  `
 }
 
 function render() {
