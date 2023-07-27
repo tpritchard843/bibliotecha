@@ -63,13 +63,15 @@ function getFetch(){
 function saveBook(book) {
   let books = JSON.parse(localStorage.getItem('books'));
   if (books) {
-    // check to see if the book is already in local storage
-    if (books.includes(book)) {
-      alert('You already added this book to your list.');
-    } else {
-      // add the book to localStorage
-      localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
-    }
+    // check to see if the book is already in local storage --> search by ISBN and compare to each book in books
+    books.forEach( elem => {
+      if (elem._isbn[0] === book._isbn[0]) {
+        alert('You already added this book to your list.');
+      } else {
+        // add the book to localStorage
+        localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+      }
+    })
   } else {
     // add the book to localStorage
     localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
