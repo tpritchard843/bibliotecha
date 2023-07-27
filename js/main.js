@@ -5,7 +5,7 @@ class Book {
     this._title = title;
     this._isbn = isbn;
     this.isSeries = isSeries;
-    this.dateAdded = this.getDate()
+    this.dateAdded = this.getDate();
   }
 
   getDate () {
@@ -31,32 +31,15 @@ function getFetch(){
       .then(data => {
         //console.log(data.title);
         //create book object
-        // if (data.keys().includes('series')) {
-        //   let book = new Book(data.title, data.isbn_13, true);
-        // } else {
-        //   let book = new Book(data.title, data.isbn_13, false);
-        // }
-
-
-        let books = JSON.parse(localStorage.getItem('books'));
-        const booksList = document.querySelector('#booksList');
-        // check to see if localStorage has any books in it
-        if (books) {
-          // check to see if the book is already in local storage
-          if (books.includes(book)) {
-            alert('You already added this book to your list.');
-          } else {
-            //push object to books array/localstorage
-            //add the book to the booklist
-            // add the book to localStorage
-            localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
-          }
+        if (Object.keys(data).includes('series')) {
+          let book = new Book(data.title, data.isbn_13, true);
+          saveBook(book);
         } else {
-          // add the book to the booksList
-
-          // add the book to localStorage
-          localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+          let book = new Book(data.title, data.isbn_13, false);
+          saveBook(book);
         }
+
+        const booksList = document.querySelector('#booksList');
       })
       .catch(err => {
           console.log(`error ${err}`);
@@ -76,6 +59,23 @@ function getFetch(){
     booksList.appendChild(li);
   });
 }
+
+function saveBook(book) {
+  let books = JSON.parse(localStorage.getItem('books'));
+  if (books) {
+    // check to see if the book is already in local storage
+    if (books.includes(book)) {
+      alert('You already added this book to your list.');
+    } else {
+      // add the book to localStorage
+      localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+    }
+  } else {
+    // add the book to localStorage
+    localStorage.setItem('books', JSON.stringify([...JSON.parse(localStorage.getItem('books') || '[]'), book]));
+  }
+}
+
 
 function getBookList(title, isbn, isSeries, dateAdded) {
   let bookList = ``;
