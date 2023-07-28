@@ -32,11 +32,11 @@ function getFetch(){
         //console.log(data.title);
         //create book object
         if (Object.keys(data).includes('series')) {
-          let book = new Book(data.title, data.isbn_13, true);
+          let book = new Book(data.title, data.isbn_13, 'Yes');
           //console.log(book, 'Object created in getfetch from Book class');
           saveBook(book);
         } else {
-          let book = new Book(data.title, data.isbn_13, false);
+          let book = new Book(data.title, data.isbn_13, 'No');
           saveBook(book);
           //console.log(book, 'Object created in getfetch from Book class');
         }
