@@ -8,20 +8,22 @@
 		<title>Title in the tab</title>
 
 		<!-- external CSS link -->
-		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
 
-		<h1>Bibliotecha -- your web-based book tracker</h1>
-		<input type="text" name="" value="" placeholder="ISBN">
-		<button type="button" name="button">Add a Book</button>
+		<h1>Bibliotecha, your web-based book tracker</h1>
+		<div class="search-bar">
+			<input type="text" name="" value="" placeholder="ISBN">
+			<button type="button" name="button">Add Book</button>
+		</div>
 
 		<div class="list-header">
-			<h3>Title</h3>
-			<h3>ISBN</h3>
-			<h3>Series?</h3>
-			<h3>Date Added</h3>
+			<h3 class="title-label">Title</h3>
+			<h3 class="isbn-label">ISBN</h3>
+			<h3 class="series-label">Series?</h3>
+			<h3 class="date-added-label">Date Added</h3>
 		</div>
 		
 		<section class="books-list" id="booksList">

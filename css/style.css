@@ -7,6 +7,15 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 62.5%;
+  /* changes default 16px font-size to 10px*/
+  color: white;
+  text-align: center;
+  margin: 50px;
+  background: #231942;
+}
+
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -15,7 +24,73 @@ img{
   margin: 0 auto;
 }
 
+.search-bar {
+  margin: 25px 0;
+}
+
+.search-bar > input {
+  padding: 5px 15px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.search-bar > button {
+  height: 32px;
+  margin-left: 5px;
+  border-radius: 20px;
+  border: none;
+  padding: 5px 15px;
+  background: #9F86C0;
+  color: white;
+}
+
+.list-header {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-label {
+  flex: 0 0 40%;
+}
+
+.books-list {
+  margin: 0 auto;
+  width: 80%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  background-color: #9F86C0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.book {
+  background-color: red;
+  border: 1px solid black;
+  padding: 10px 5px;
+}
+
+.book-inner {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.box1 {
+  flex: 0 0 40%;
+  background-color: green;
+  font-style: italic;
+  font-size: 1.2rem;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+h1 {
+  font-size: 2rem;
+  font-style: bold;
+}
