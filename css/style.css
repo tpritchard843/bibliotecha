@@ -7,6 +7,16 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 62.5%;
+  /* changes default 16px font-size to 10px*/
+  font-family: 'Ubuntu', sans-serif;
+  color: black;
+  text-align: center;
+  margin: 50px;
+  background: white;
+}
+
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -16,6 +26,95 @@ img{
 }
 
 
+.app-title {
+  font-size: 2.5rem;
+  text-decoration: underline;
+}
+
+.search-bar {
+  margin: 25px 0;
+}
+
+.search-bar > input {
+  padding: 5px 15px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.search-bar > button {
+  height: 32px;
+  margin-left: 5px;
+  border-radius: 20px;
+  border: none;
+  padding: 5px 15px;
+  background: #9F86C0;
+  color: black;
+}
+
+.list-header {
+  margin: 0 auto 10px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.title-label {
+  flex: 0 0 30%;
+}
+
+.isbn-label {
+  position: relative;
+  left: 30px;
+}
+
+.series-label {
+  position: relative;
+  left: 42px;
+}
+
+.date-added-label {
+  position: relative;
+  right: 5px;
+}
+
+.books-list {
+  margin: 0 auto;
+  width: 80%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(159, 134, 192);
+  padding: 10px;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.book {
+  padding: 5px;
+}
+
+.book-inner {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.box1 {
+  flex: 0 0 30%;
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+h1 {
+  font-size: 2rem;
+  font-style: bold;
+}
